@@ -4,42 +4,51 @@
 		xmlns:models="clr-namespace:RedactorDiagramClassov.Models">
 		
 	<Design.PreviewWith>
-    <controls:ClassInsideaxaml />
+		<DataTemplate DataType="{x:Type	models:MyInterface}">
+			<controls:ClassInsideaxaml
+				CustomX="{Binding StartPointGrid.X}"
+				CustomY="{Binding StartPointGrid.Y}"
+				Height="{Binding Height}"
+				Width="{Binding Width}"
+				Name ="{Binding Name}"
+						   />
+		</DataTemplate>
   </Design.PreviewWith>
 
   <Style Selector="controls|ClassInsideaxaml">
     <!-- Set Defaults -->
     <Setter Property="Template">
-      <ControlTemplate>
-			 <Grid RowDefinitions="0.1*, *">
-			        <Grid.RenderTransform>
-                        <TransformGroup>
-							<TranslateTransform
-								X="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomX}"
-								Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomY}"
+		<ControlTemplate>
+			  <Grid RowDefinitions="0.1*, *">
+				  <Grid.RenderTransform>
+					  <TransformGroup>
+						  <TranslateTransform
+							  X="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomX}"
+							  Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomY}"
 								/>
-						</TransformGroup>
-			        </Grid.RenderTransform>
-				 <TextBlock Background="Bisque" Text="AAAAAAAAAA" Grid.Row="0"/>
-				 <TextBlock Background="CadetBlue" Text="{TemplateBinding Name}" Grid.Row="1"/>
-				 <Rectangle Grid.RowSpan="2"
-									 Height="{TemplateBinding Height}"
-									 Width="{TemplateBinding Width}"
-									 Fill="Transparent"
-									 Stroke="Green"
-									 StrokeThickness="2">
-					 <Rectangle.RenderTransform>
-						 <TransformGroup>
-							 <TranslateTransform
-								 X="0"
-								 Y="0"/>
-							 <ScaleTransform>
-							 </ScaleTransform>
-						 </TransformGroup>
-					 </Rectangle.RenderTransform>
-				 </Rectangle>
-			</Grid>
-      </ControlTemplate>
+								
+					  </TransformGroup>
+				  </Grid.RenderTransform>
+				  <TextBlock Background="Bisque" Text="AAAAAAAAAA" Grid.Row="0"/>
+				  <TextBlock Background="CadetBlue" Text="{TemplateBinding Name}" Grid.Row="1"/>
+				  <Rectangle Grid.RowSpan="2"
+									  Height="{TemplateBinding Height}"
+									  Width="{TemplateBinding Width}"
+									  Fill="Transparent"
+									  Stroke="Green"
+									  StrokeThickness="2">
+					  <Rectangle.RenderTransform>
+						  <TransformGroup>
+							  <TranslateTransform
+								  X="0"
+								Y="0"/>
+							  <ScaleTransform>
+							  </ScaleTransform>
+						  </TransformGroup>
+					  </Rectangle.RenderTransform>
+				  </Rectangle>
+			  </Grid>
+			</ControlTemplate>
     </Setter>
   </Style>
 </Styles>

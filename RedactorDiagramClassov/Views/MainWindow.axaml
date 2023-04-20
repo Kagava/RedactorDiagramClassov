@@ -51,16 +51,16 @@
 			   </ItemsControl.ItemsPanel>
 			   <ItemsControl.DataTemplates>
 				   <DataTemplate DataType="{x:Type	models:MyClass}">
-					   <controls:ClassInsideaxaml
+					  <!-- <controls:ClassInsideaxaml
 						   CustomX="{Binding StartPointGrid.X}"
 						   CustomY="{Binding StartPointGrid.Y}"
 						   
 						   Background ="Yellow" 
 						   Height="{Binding Height}"
 						   Width="{Binding Width}"
-						   Name ="{Binding Name}}"
-						   />
-						   <!--<Grid Background ="Red" RowDefinitions="0.1*, *">
+						   Name ="{Binding Name}"
+						   />-->
+						   <Grid Background ="Red" RowDefinitions="0.1*, *">
 						   <Grid.RenderTransform>
 							   <TransformGroup>
 								   <TranslateTransform
@@ -78,48 +78,18 @@
 									 Fill="Transparent"
 									 Stroke="Green"
 									 StrokeThickness="2">
-							   <Rectangle.RenderTransform>
-								   <TransformGroup>
-									   <TranslateTransform
-										   X="0"
-										   Y="0"/>
-									   <ScaleTransform>
-									   </ScaleTransform>
-								   </TransformGroup>
-							   </Rectangle.RenderTransform>
+							  
 						   </Rectangle>
-					   </Grid>-->
+					   </Grid>
 				   </DataTemplate>
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
-					   <Grid Background ="Red" RowDefinitions="0.1*, *">
-						   <Grid.RenderTransform>
-							   <TransformGroup>
-								   <TranslateTransform
-									   X="{Binding StartPointGrid.X}"
-									   Y="{Binding StartPointGrid.Y}"/>
-								   <ScaleTransform>
-								   </ScaleTransform>
-							   </TransformGroup>
-						   </Grid.RenderTransform>
-						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" />
-						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
-						   <Rectangle Grid.RowSpan="2"
-									 Height="{Binding Height}"
-									 Width="{Binding Width}"
-									 Fill="Transparent"
-									 Stroke="Green"
-									 StrokeThickness="2">
-							   <Rectangle.RenderTransform>
-								   <TransformGroup>
-									   <TranslateTransform
-										   X="0"
-										   Y="0"/>
-									   <ScaleTransform>
-									   </ScaleTransform>
-								   </TransformGroup>
-							   </Rectangle.RenderTransform>
-						   </Rectangle>
-					</Grid>
+					   <controls:ClassInsideaxaml
+						   CustomX="{Binding StartPointGrid.X}"
+						   CustomY="{Binding StartPointGrid.Y}"	
+						   Height="{Binding Height}"
+						   Width="{Binding Width}"
+						   Name ="{Binding Name}"
+						   />
 				   </DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>
