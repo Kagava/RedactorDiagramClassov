@@ -35,7 +35,7 @@ namespace RedactorDiagramClassov.Views
                     mainWindowViewModel.AbstractFigs.Add(
                         new MyClass(CurrentName)
                         {
-                            StartPoint = pointPointerPressed,
+                            //StartPoint = pointPointerPressed,
                             StartPointGrid = pointPointerPressed
                         });   
                     this.PointerMoved += PointerMoveDragRectangle;
@@ -86,7 +86,7 @@ namespace RedactorDiagramClassov.Views
                         this.GetVisualDescendants()
                         .OfType<Canvas>()
                         .FirstOrDefault());
-
+                    editClass.EndPoint = new Point(currentPointerPosition.X, currentPointerPosition.Y);
                     editClass.Width = currentPointerPosition.X - pointPointerPressed.X;
                     editClass.Height = currentPointerPosition.Y - pointPointerPressed.Y;
                 }
@@ -98,7 +98,7 @@ namespace RedactorDiagramClassov.Views
                         this.GetVisualDescendants()
                         .OfType<Canvas>()
                         .FirstOrDefault());
-
+                    editInterface.EndPoint = new Point(currentPointerPosition.X, currentPointerPosition.Y);
                     editInterface.Width = currentPointerPosition.X - pointPointerPressed.X;
                     editInterface.Height = currentPointerPosition.Y - pointPointerPressed.Y;
                 }

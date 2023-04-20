@@ -51,15 +51,7 @@
 			   </ItemsControl.ItemsPanel>
 			   <ItemsControl.DataTemplates>
 				   <DataTemplate DataType="{x:Type	models:MyClass}">
-					  <!-- <controls:ClassInsideaxaml
-						   CustomX="{Binding StartPointGrid.X}"
-						   CustomY="{Binding StartPointGrid.Y}"
-						   
-						   Background ="Yellow" 
-						   Height="{Binding Height}"
-						   Width="{Binding Width}"
-						   Name ="{Binding Name}"
-						   />-->
+					 
 						   <Grid Background ="Red" RowDefinitions="0.1*, *">
 						   <Grid.RenderTransform>
 							   <TransformGroup>
@@ -70,8 +62,8 @@
 								   </ScaleTransform>
 							   </TransformGroup>
 						   </Grid.RenderTransform>
-						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" />
-						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
+						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" HorizontalAlignment="Center" />
+							   <controls:ClassInsideaxaml Grid.Row="1" />
 						   <Rectangle Grid.RowSpan="2"
 									 Height="{Binding Height}"
 									 Width="{Binding Width}"
@@ -83,13 +75,56 @@
 					   </Grid>
 				   </DataTemplate>
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
-					   <controls:ClassInsideaxaml
-						   CustomX="{Binding StartPointGrid.X}"
-						   CustomY="{Binding StartPointGrid.Y}"	
-						   Height="{Binding Height}"
-						   Width="{Binding Width}"
-						   Name ="{Binding Name}"
-						   />
+					   <Grid Background ="Red" RowDefinitions="0.1*, *">
+						   <Grid.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding StartPointGrid.X}"
+									   Y="{Binding StartPointGrid.Y}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+							   </TransformGroup>
+						   </Grid.RenderTransform>
+						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" HorizontalAlignment="Center"/>
+						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
+						   <Rectangle Grid.RowSpan="2"
+									 Height="{Binding Height}"
+									 Width="{Binding Width}"
+									 Fill="Transparent"
+									 Stroke="Green"
+									 StrokeThickness="2">
+
+						   </Rectangle>
+						   <Ellipse Grid.Row="0"
+							 Height="5"
+							 Width="5"
+							 Fill="Red">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding UpX}"
+										   Y="{Binding UpY}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse Grid.Row="1"
+							 Height="5"
+							 Width="5"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding UpX}"
+										   Y="{Binding UpY}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+					   </Grid>
+					   
 				   </DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>

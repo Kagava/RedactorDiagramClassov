@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace RedactorDiagramClassov.Models
         public Point endPoint;
         public double width;
         public double height;
+        public double upX;
+        public double upY;
         public string Name
         {
             get => name;
@@ -46,6 +49,22 @@ namespace RedactorDiagramClassov.Models
         {
             get => startPointGrid;
             set => SetAndRaise(ref startPointGrid, value);
+        }
+        public double UpX
+        {
+            get => upX;
+            set
+            {
+                upX = EndPoint.X;
+            }
+        }
+        public double UpY
+        {
+            get => upY;
+            set
+            {
+                upY = EndPoint.Y*2;
+            }
         }
     }
 
