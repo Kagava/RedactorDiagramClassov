@@ -1,0 +1,91 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:RedactorDiagramClassov.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:models="clr-namespace:RedactorDiagramClassov.Models"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="RedactorDiagramClassov.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="RedactorDiagramClassov">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+   <Grid RowDefinitions="0.1*, *">
+	<Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+		<StackPanel  Orientation="Horizontal">
+			
+			<RadioButton IsChecked="{Binding IsDrag}"
+						 GroupName="PaintOption"
+						 MinWidth="80"
+						 Content="Drag"/>
+			<RadioButton IsChecked="{Binding IsSkale}"
+						 GroupName="PaintOption"
+						 MinWidth="80"
+						 Content="Skale"/>
+			<RadioButton IsChecked="{Binding IsClass}"
+						 GroupName="PaintOption"
+						 MinWidth="80"
+						 Content="Class"/>
+			<RadioButton IsChecked="{Binding IsInterface}"
+						 GroupName="PaintOption"
+						 MinWidth="80"
+						 Content="Interface"/>
+			<RadioButton 
+						 GroupName="PaintOption"
+						 MinWidth="80"
+						 Content="{Binding CountOfClass}"/>
+		</StackPanel>
+	</Border>
+	   <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2">
+		   <ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{Binding AbstractFigs}" PointerPressed="PointerPressedOnCanvas">
+			   <ItemsControl.ItemsPanel>
+				   <ItemsPanelTemplate>
+					   <Canvas Background="White" Name="canvas"/>
+				   </ItemsPanelTemplate>
+			   </ItemsControl.ItemsPanel>
+			   <ItemsControl.DataTemplates>
+				   <DataTemplate DataType="{x:Type	models:MyClass}">
+						<Grid>
+						   <Rectangle 
+									Height="{Binding Height}"
+									Width="{Binding Width}"
+									Fill="Gray"
+									Stroke="Red"
+									StrokeThickness="2">
+							   <!--
+							   <Grid  RowDefinitions="0.1*, *">
+								   <TextBlock Text= "{Binding Name}" Grid.Row="0"/>
+								   <TextBlock Text= "AAAA" Grid.Row="1"/>
+							   </Grid>-->
+						   </Rectangle>
+							<TextBlock Text ="{Binding Name}"
+									    TextAlignment="Center"/>
+						</Grid>
+				   </DataTemplate>
+
+				   <DataTemplate DataType="{x:Type	models:MyInterface}">
+					   <Grid>
+						   <Rectangle 
+									Height="{Binding Height}"
+									Width="{Binding Width}"
+									Fill="Gray"
+									Stroke="Green"
+									StrokeThickness="2">
+							   <!--
+							   <Grid  RowDefinitions="0.1*, *">
+								   <TextBlock Text= "{Binding Name}" Grid.Row="0"/>
+								   <TextBlock Text= "AAAA" Grid.Row="1"/>
+							   </Grid>-->
+						   </Rectangle>
+						   <TextBlock Text ="{Binding Name}"
+									   TextAlignment="Center"/>
+					   </Grid>
+				   </DataTemplate>
+			   </ItemsControl.DataTemplates>
+		   </ItemsControl>
+	   </Border>
+   </Grid>
+</Window>
