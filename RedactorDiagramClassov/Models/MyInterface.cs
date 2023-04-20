@@ -11,6 +11,7 @@ namespace RedactorDiagramClassov.Models
         public MyInterface(string name)
         {
             Name = name;
+
         }
     }
 }

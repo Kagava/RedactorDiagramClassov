@@ -13,6 +13,7 @@ namespace RedactorDiagramClassov.Models
     {
         public string? name;
         public Point startPoint;
+        public Point startPointGrid;
         public Point endPoint;
         public double width;
         public double height;
@@ -40,6 +41,11 @@ namespace RedactorDiagramClassov.Models
         {
             get => height;
             set => SetAndRaise(ref height, value);
+        }
+        public Point StartPointGrid
+        {
+            get => startPointGrid;
+            set => SetAndRaise(ref startPointGrid, value);
         }
     }
 

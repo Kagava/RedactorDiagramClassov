@@ -36,7 +36,8 @@ namespace RedactorDiagramClassov.Views
                         new MyClass(CurrentName)
                         {
                             StartPoint = pointPointerPressed,
-                        });
+                            StartPointGrid = pointPointerPressed
+                        });   
                     this.PointerMoved += PointerMoveDragRectangle;
                     this.PointerReleased += PointerPressedReleasedDragRectangle;
                 }
@@ -47,7 +48,8 @@ namespace RedactorDiagramClassov.Views
                     mainWindowViewModel.AbstractFigs.Add(
                         new MyInterface(CurrentName)
                         {
-                            StartPoint = pointPointerPressed,
+                            //StartPoint = pointPointerPressed,
+                            StartPointGrid = pointPointerPressed
                         });
                     this.PointerMoved += PointerMoveDragRectangle;
                     this.PointerReleased += PointerPressedReleasedDragRectangle;
@@ -114,9 +116,9 @@ namespace RedactorDiagramClassov.Views
 
                 if (shape.DataContext is AbstractFig myShape)
                 {
-                    myShape.StartPoint = new Point(
-                        currentPointerPosition.X - pointerPositionIntoShape.X,
-                        currentPointerPosition.Y - pointerPositionIntoShape.Y);
+                    myShape.StartPointGrid = new Point(
+                       currentPointerPosition.X - pointerPositionIntoShape.X,
+                       currentPointerPosition.Y - pointerPositionIntoShape.Y);
                 }
             }
         }

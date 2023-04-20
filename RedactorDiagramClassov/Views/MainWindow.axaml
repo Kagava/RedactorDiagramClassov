@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:models="clr-namespace:RedactorDiagramClassov.Models"
+		xmlns:controls="clr-namespace:RedactorDiagramClassov.Views.Control"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="RedactorDiagramClassov.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -37,52 +38,88 @@
 						 GroupName="PaintOption"
 						 MinWidth="80"
 						 Content="{Binding CountOfClass}"/>
+			
 		</StackPanel>
 	</Border>
 	   <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2">
 		   <ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{Binding AbstractFigs}" PointerPressed="PointerPressedOnCanvas">
 			   <ItemsControl.ItemsPanel>
 				   <ItemsPanelTemplate>
-					   <Canvas Background="White" Name="canvas"/>
+					   
+					   <Canvas Background="White" Name="canvas" />
 				   </ItemsPanelTemplate>
 			   </ItemsControl.ItemsPanel>
 			   <ItemsControl.DataTemplates>
 				   <DataTemplate DataType="{x:Type	models:MyClass}">
-						<Grid>
-						   <Rectangle 
-									Height="{Binding Height}"
-									Width="{Binding Width}"
-									Fill="Gray"
-									Stroke="Red"
-									StrokeThickness="2">
-							   <!--
-							   <Grid  RowDefinitions="0.1*, *">
-								   <TextBlock Text= "{Binding Name}" Grid.Row="0"/>
-								   <TextBlock Text= "AAAA" Grid.Row="1"/>
-							   </Grid>-->
+					   <controls:ClassInsideaxaml
+						   CustomX="{Binding StartPointGrid.X}"
+						   CustomY="{Binding StartPointGrid.Y}"
+						   
+						   Background ="Yellow" 
+						   Height="{Binding Height}"
+						   Width="{Binding Width}"
+						   Name ="{Binding Name}}"
+						   />
+						   <!--<Grid Background ="Red" RowDefinitions="0.1*, *">
+						   <Grid.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding StartPointGrid.X}"
+									   Y="{Binding StartPointGrid.Y}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+							   </TransformGroup>
+						   </Grid.RenderTransform>
+						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" />
+						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
+						   <Rectangle Grid.RowSpan="2"
+									 Height="{Binding Height}"
+									 Width="{Binding Width}"
+									 Fill="Transparent"
+									 Stroke="Green"
+									 StrokeThickness="2">
+							   <Rectangle.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="0"
+										   Y="0"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Rectangle.RenderTransform>
 						   </Rectangle>
-							<TextBlock Text ="{Binding Name}"
-									    TextAlignment="Center"/>
-						</Grid>
+					   </Grid>-->
 				   </DataTemplate>
-
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
-					   <Grid>
-						   <Rectangle 
-									Height="{Binding Height}"
-									Width="{Binding Width}"
-									Fill="Gray"
-									Stroke="Green"
-									StrokeThickness="2">
-							   <!--
-							   <Grid  RowDefinitions="0.1*, *">
-								   <TextBlock Text= "{Binding Name}" Grid.Row="0"/>
-								   <TextBlock Text= "AAAA" Grid.Row="1"/>
-							   </Grid>-->
+					   <Grid Background ="Red" RowDefinitions="0.1*, *">
+						   <Grid.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding StartPointGrid.X}"
+									   Y="{Binding StartPointGrid.Y}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+							   </TransformGroup>
+						   </Grid.RenderTransform>
+						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" />
+						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
+						   <Rectangle Grid.RowSpan="2"
+									 Height="{Binding Height}"
+									 Width="{Binding Width}"
+									 Fill="Transparent"
+									 Stroke="Green"
+									 StrokeThickness="2">
+							   <Rectangle.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="0"
+										   Y="0"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Rectangle.RenderTransform>
 						   </Rectangle>
-						   <TextBlock Text ="{Binding Name}"
-									   TextAlignment="Center"/>
-					   </Grid>
+					</Grid>
 				   </DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>
