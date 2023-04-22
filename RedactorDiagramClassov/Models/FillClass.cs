@@ -1,24 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DynamicData.Binding;
 
 namespace RedactorDiagramClassov.Models
 {
-    public class MyInterface : AbstractFig
+    public class FillClass : AbstractNotifyPropertyChanged
     {
-        public MyInterface(string name)
+        private string nameC = "Zdarova";
+        public string NameC
         {
-            Name = name;
-            NameI = name; 
-        }
-        private string nameI;
-        public string NameI
-        {
-            get => nameI;
-            set => SetAndRaise(ref nameI, value);
+            get => nameC;
+            set => SetAndRaise(ref nameC, value);
         }
         private string stereotip;
         public string Stereotip
@@ -67,6 +62,42 @@ namespace RedactorDiagramClassov.Models
         {
             get => specOp;
             set => SetAndRaise(ref specOp, value);
+        }
+        private string nameAt;
+        public string ameAt
+        {
+            get => nameAt;
+            set => SetAndRaise(ref nameAt, value);
+        }
+        private string tipAt;
+        public string TipAt
+        {
+            get => tipAt;
+            set => SetAndRaise(ref tipAt, value);
+        }
+        private string visionAt;
+        public string VisionAt
+        {
+            get => visionAt;
+            set => SetAndRaise(ref visionAt, value);
+        }
+        private string spesRSAt;
+        public string SpesRSAt
+        {
+            get => spesRSAt;
+            set => SetAndRaise(ref spesRSAt, value);
+        }
+        private string defoultValueAt;
+        public string DefoultValueAt
+        {
+            get => defoultValueAt;
+            set => SetAndRaise(ref defoultValueAt, value);
+        }
+        private string stereotipsAt;
+        public string StereotipsAt
+        {
+            get => stereotipsAt;
+            set => SetAndRaise(ref stereotipsAt, value);
         }
     }
 }

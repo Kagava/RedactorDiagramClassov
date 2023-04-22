@@ -34,14 +34,15 @@
 						 GroupName="PaintOption"
 						 MinWidth="80"
 						 Content="Interface"/>
-			<RadioButton 
+			<RadioButton IsChecked="{Binding IsDrawLine}"
 						 GroupName="PaintOption"
 						 MinWidth="80"
-						 Content="{Binding CountOfClass}"/>
+						 Content="DrawLine"/>
 			
 		</StackPanel>
 	</Border>
 	   <Border Grid.Row="1" BorderBrush="Black" BorderThickness="2">
+		   
 		   <ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{Binding AbstractFigs}" PointerPressed="PointerPressedOnCanvas">
 			   <ItemsControl.ItemsPanel>
 				   <ItemsPanelTemplate>
@@ -61,10 +62,12 @@
 								   </ScaleTransform>
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
-						   <Grid Background ="Red" RowDefinitions="0.1*, *">
+
+						   <controls:ClassInsideaxaml Height="{Binding Height}"
+									 Width="{Binding Width}" MyCollection="{Binding FillClasses}"/>
+						
 						   
-						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" HorizontalAlignment="Center" />
-							   <controls:ClassInsideaxaml Grid.Row="1" />
+						   <!--<TextBlock Text="{Binding NameC}" Grid.Row="0"/>-->
 						   <Rectangle Grid.RowSpan="2"
 									 Height="{Binding Height}"
 									 Width="{Binding Width}"
@@ -73,9 +76,66 @@
 									 StrokeThickness="2">
 							  
 						   </Rectangle>
-						</Grid>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli1X}"
+										   Y="{Binding Elli1Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli2X}"
+										   Y="{Binding Elli2Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli3X}"
+										   Y="{Binding Elli3Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli4X}"
+										   Y="{Binding Elli4Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
 					   </Canvas>
+					   
 				   </DataTemplate>
+				   
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
 					   <Canvas>
 						   <Canvas.RenderTransform>
@@ -89,8 +149,7 @@
 						   </Canvas.RenderTransform>
 					   <Grid Background ="Red" RowDefinitions="0.1*, *">
 						   
-						   <TextBlock Background ="Yellow" Text="{Binding Name}" Grid.Row="0" HorizontalAlignment="Center"/>
-						   <TextBlock Background ="Green" Text="{Binding Name}" Grid.Row="1" />
+						   <TextBlock Text="{Binding NameI}" Grid.Row="1"/>
 						   <Rectangle Grid.RowSpan="2"
 									 Height="{Binding Height}"
 									 Width="{Binding Width}"
@@ -99,17 +158,58 @@
 									 StrokeThickness="2">
 
 						   </Rectangle>
-						   
 					   </Grid>
 						   <Ellipse
-							 Height="5"
-							 Width="5"
-							 Fill="Red">
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
 							   <Ellipse.RenderTransform>
 								   <TransformGroup>
 									   <TranslateTransform
-										   X="{Binding UpX}"
-										   Y="{Binding UpY}"/>
+										   X="{Binding Elli1X}"
+										   Y="{Binding Elli1Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli2X}"
+										   Y="{Binding Elli2Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli3X}"
+										   Y="{Binding Elli3Y}"/>
+									   <ScaleTransform>
+									   </ScaleTransform>
+								   </TransformGroup>
+							   </Ellipse.RenderTransform>
+						   </Ellipse>
+						   <Ellipse
+							 Height="10"
+							 Width="10"
+							 Fill="Black">
+							   <Ellipse.RenderTransform>
+								   <TransformGroup>
+									   <TranslateTransform
+										   X="{Binding Elli4X}"
+										   Y="{Binding Elli4Y}"/>
 									   <ScaleTransform>
 									   </ScaleTransform>
 								   </TransformGroup>
@@ -117,6 +217,13 @@
 						   </Ellipse>
 					   </Canvas>
 				   </DataTemplate>
+			   <DataTemplate DataType="{ x:Type	models:MyLine}">
+					   <Line StartPoint="{Binding StartPoint}"
+							 EndPoint="{Binding EndPoint}"
+							 Stroke="Black"
+							 StrokeThickness="1"
+								/>
+					</DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>
 	   </Border>

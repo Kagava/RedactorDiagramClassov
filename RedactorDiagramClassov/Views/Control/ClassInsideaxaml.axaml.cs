@@ -1,6 +1,8 @@
+using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using RedactorDiagramClassov.Models;
 
 namespace RedactorDiagramClassov.Views.Control
 {
@@ -21,6 +23,14 @@ namespace RedactorDiagramClassov.Views.Control
         {
             get => GetValue(CustomYProperty);
             set => SetValue(CustomYProperty, value);
+        }
+        public static readonly StyledProperty<ObservableCollection<FillClass>> MyCollectionProperty =
+            AvaloniaProperty.Register<ClassInsideaxaml, ObservableCollection<FillClass>>("MyCollection");
+
+        public ObservableCollection<FillClass> MyCollection
+        {
+            get => GetValue(MyCollectionProperty);
+            set => SetValue(MyCollectionProperty, value);
         }
     }
 }

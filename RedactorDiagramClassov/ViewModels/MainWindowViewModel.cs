@@ -6,6 +6,7 @@ using Avalonia;
 using Avalonia.Input;
 using Avalonia.Media;
 using DynamicData;
+using Microsoft.CodeAnalysis;
 using ReactiveUI;
 using RedactorDiagramClassov.Models;
 
@@ -17,6 +18,7 @@ namespace RedactorDiagramClassov.ViewModels
         private bool isSkale;
         private bool isClass;
         private bool isInterface;
+        private bool isDrawLine;
         private int countOfClass = 0;
         private int countOfInterface = 0;
         private string sss;
@@ -35,6 +37,7 @@ namespace RedactorDiagramClassov.ViewModels
             get => abstractFigs;
             set => this.RaiseAndSetIfChanged(ref abstractFigs, value);
         }
+        
         public bool IsDrag
         {
             get => isDrag;
@@ -54,6 +57,11 @@ namespace RedactorDiagramClassov.ViewModels
         {
             get => isSkale;
             set => this.RaiseAndSetIfChanged(ref isSkale, value);
+        }
+        public bool IsDrawLine
+        {
+            get => isDrawLine;
+            set => this.RaiseAndSetIfChanged(ref isDrawLine, value);
         }
         public int CountOfClass
         {
