@@ -30,6 +30,36 @@ namespace RedactorDiagramClassov.Models
         public double elli3Y;
         public double elli4X;
         public double elli4Y;
+        private string nameStart;
+        private string nameEnd;
+        private string typeLine;
+        public List<Point> listPoint;
+        private bool flagList;
+        public bool FlagList
+        {
+            get => flagList;
+            set => SetAndRaise(ref flagList, value);
+        }
+        public List<Point> ListPoint
+        {
+            get => listPoint;
+            set => SetAndRaise(ref listPoint, value);
+        }
+        public string TypeLine
+        {
+            get => typeLine;
+            set => SetAndRaise(ref typeLine, value);
+        }
+        public string NameStart
+        {
+            get => nameStart;
+            set => SetAndRaise(ref nameStart, value);
+        }
+        public string NameEnd
+        {
+            get => nameEnd;
+            set => SetAndRaise(ref nameEnd, value);
+        }
         public string Name
         {
             get => name;
@@ -59,7 +89,12 @@ namespace RedactorDiagramClassov.Models
         public Point EndPoint
         {
             get => endPoint;
-            set => SetAndRaise(ref endPoint, value);
+            set 
+            {
+                SetAndRaise(ref endPoint, value);
+                CalculateTip();
+            }
+
         }
         public double Width
         {
@@ -137,6 +172,16 @@ namespace RedactorDiagramClassov.Models
             set => SetAndRaise(ref elli4Y, value);
         }
         public event EventHandler<ChangeStartPointEventArgs> ChangeStartPoint;
+        private void CalculateTip()
+        {
+            if (FlagList == true)
+            {
+                ListPoint.Add(new Point(EndPoint.X, EndPoint.Y));
+                ListPoint.Add(new Point(EndPoint.X - 10, EndPoint.Y - 10));
+                ListPoint.Add((EndPoint));
+                ListPoint.Add((new Point(EndPoint.X + 10, EndPoint.Y - 10)));
+            }
+        }
     }
 
 }

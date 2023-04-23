@@ -19,6 +19,12 @@ namespace RedactorDiagramClassov.ViewModels
         private bool isClass;
         private bool isInterface;
         private bool isDrawLine;
+        private bool isAssotiatioin = true;
+        private bool isNasledovanie;
+        private bool isRealisation;
+        private bool isZavisimost;
+        private bool isAgrigation;
+        private bool isComposition;
         private int countOfClass = 0;
         private int countOfInterface = 0;
         private string sss;
@@ -77,6 +83,36 @@ namespace RedactorDiagramClassov.ViewModels
         {
             get => sss;
             set => this.RaiseAndSetIfChanged(ref sss, value);
+        }
+        public bool IsAssotiatioin
+        {
+            get => isAssotiatioin;
+            set => this.RaiseAndSetIfChanged(ref isAssotiatioin, value);
+        }
+        public bool IsNasledovanie
+        {
+            get => isNasledovanie;
+            set => this.RaiseAndSetIfChanged(ref isNasledovanie, value);
+        }
+        public bool IsRealisation
+        {
+            get => isRealisation;
+            set => this.RaiseAndSetIfChanged(ref isRealisation, value);
+        }
+        public bool IsZavisimost
+        {
+            get => isZavisimost;
+            set => this.RaiseAndSetIfChanged(ref isZavisimost, value);
+        }
+        public bool IsAgrigation
+        {
+            get => isAgrigation;
+            set => this.RaiseAndSetIfChanged(ref isAgrigation, value);
+        }
+        public bool IsComposition
+        {
+            get => isComposition;
+            set => this.RaiseAndSetIfChanged(ref isComposition, value);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Avalonia;
@@ -7,6 +8,7 @@ using Avalonia.Input;
 using Avalonia.VisualTree;
 using RedactorDiagramClassov.Models;
 using RedactorDiagramClassov.ViewModels;
+
 
 namespace RedactorDiagramClassov.Views
 {
@@ -68,7 +70,32 @@ namespace RedactorDiagramClassov.Views
                         {
                             if (control.DataContext is AbstractFig rectangle)
                             {
-                                pointerPositionBegineLine = pointerPressedEventArgs.GetPosition(
+                            string typeLine = string.Empty;
+                            if (mainWindowViewModel.IsAssotiatioin == true)
+                            {
+                                typeLine = "Assotiatioin";
+                            }
+                            if (mainWindowViewModel.IsNasledovanie == true)
+                            {
+                                typeLine = "Nasledovanie";
+                            }
+                            if (mainWindowViewModel.IsRealisation == true)
+                            {
+                                typeLine = "Realisation";
+                            }
+                            if (mainWindowViewModel.IsZavisimost == true)
+                            {
+                                typeLine = "Zavisimost";
+                            }
+                            if (mainWindowViewModel.IsAgrigation == true)
+                            {
+                                typeLine = "Agrigation";
+                            }
+                            if (mainWindowViewModel.IsComposition == true)
+                            {
+                                typeLine = "Composition";
+                            }
+                            pointerPositionBegineLine = pointerPressedEventArgs.GetPosition(
                                     this.GetVisualDescendants()
                                     .OfType<Canvas>()
                                     .FirstOrDefault());
@@ -77,8 +104,12 @@ namespace RedactorDiagramClassov.Views
                                     {
                                         StartPoint = pointerPositionBegineLine,
                                         FirstFig = rectangle,
-                                        NameStart = rectangle.Name
-                                    });;
+                                        NameStart = rectangle.Name,
+                                        TypeLine = typeLine,
+                                        ListPoint = new List<Point>(),
+                                        FlagList = true
+                                    });
+                                MyLine lll = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyLine;
                                 this.PointerMoved += PointerMoveDrawLine;
                                 this.PointerReleased += PointerPressedReleasedDrawLine;
                             }
@@ -124,6 +155,7 @@ namespace RedactorDiagramClassov.Views
                     editClass.Elli4Y = editClass.DownY / 2;
                     editClass.Width = currentPointerPosition.X - pointPointerPressed.X;
                     editClass.Height = currentPointerPosition.Y - pointPointerPressed.Y;
+                    
                 }
                 if (mainWindowViewModel.IsInterface == true)
                 {
@@ -149,7 +181,7 @@ namespace RedactorDiagramClassov.Views
                     editInterface.Width = currentPointerPosition.X - pointPointerPressed.X;
                     editInterface.Height = currentPointerPosition.Y - pointPointerPressed.Y;
                 }
-                if (mainWindowViewModel.IsDrawLine == true && pointerReleasedEventArgs.Source is Ellipse eli)
+                /*if (mainWindowViewModel.IsDrawLine == true && pointerReleasedEventArgs.Source is Ellipse eli)
                 {
                     MyLine Line = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyLine;
                     pointerPositionEndLine = pointerReleasedEventArgs
@@ -158,8 +190,19 @@ namespace RedactorDiagramClassov.Views
                         .OfType<Canvas>()
                         .FirstOrDefault());
                     Line.EndPoint = pointerPositionEndLine;
+                    if (Line.TypeLine == "Assotiatioin")
+                    {
+                        /*lineies.PointsBline.Add(lineies.EndPoint);
+                        lineies.PointsBline.Add(new Point(lineies.EndPoint.X - 10, lineies.EndPoint.Y - 10));
+                        lineies.PointsBline.Add(lineies.EndPoint);
+                        lineies.PointsBline.Add(new Point(lineies.EndPoint.X + 10, lineies.EndPoint.Y - 10));
+                        Line.PointsBline.Add(new Point(10, 10));
+                        Line.PointsBline.Add(new Point(20, 10));
+                        Line.PointsBline.Add(new Point(10, 20));
+                        lineies.PointsBline.Add(new Point(20, 20));
+                    }
 
-                }
+                }*/
                 this.PointerMoved -= PointerMoveDragRectangle;
                 this.PointerReleased -= PointerPressedReleasedDragRectangle;
             }
@@ -195,8 +238,10 @@ namespace RedactorDiagramClassov.Views
                 }
             }
         }
+
         private void PointerMoveDragShape(object? sender, PointerEventArgs pointerEventArgs)
         {
+            
             if (DataContext is MainWindowViewModel mainWindowViewModel)
             {
                 if (pointerEventArgs.Source is Shape shape)
@@ -218,11 +263,12 @@ namespace RedactorDiagramClassov.Views
                             {
                                 int CountI = 0;
                                 int CountJ = 0;
-                                if (mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] is MyLine hehe)
-                                {
+                                //if (mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] is MyLine hehe)
+                                //{
+                                //MyLine hehe = ;
                                     int Flag_End_Y = 0;
                                     int Flag_End_X = 0;
-                                    if (hehe.NameStart == myShape.Name)
+                                    if (lineies.NameStart == myShape.Name)
                                     {
                                         for (int i = -10; i < 10; i++)
                                         {
@@ -347,8 +393,150 @@ namespace RedactorDiagramClassov.Views
                                             lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width, myShape.StartPointGrid.Y + myShape.Height / 2);
                                         }
                                     }
-                                }      
+                                //}      
                             }                           
+                        }
+                        foreach (AbstractFig lineies in mainWindowViewModel.AbstractFigs)
+                        {
+                            if (lineies.Name == "Line")
+                            {
+                                int CountI = 0;
+                                int CountJ = 0;
+                                //if (mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] is MyLine hehe)
+                                //{
+                                //MyLine hehe = ;
+                                int Flag_End_Y = 0;
+                                int Flag_End_X = 0;
+                                if (lineies.NameEnd == myShape.Name)
+                                {
+                                    for (int i = -10; i < 10; i++)
+                                    {
+                                        if (lineies.EndPoint.X >= myShape.StartPointGrid.X + myShape.Width / 2 + i && Flag_End_X != 1 && lineies.EndPoint.X < myShape.StartPointGrid.X + myShape.Width / 2 + 20)
+                                        {
+                                            for (int j = -10; j < 10; j++)
+                                            {
+                                                if (lineies.EndPoint.Y >= myShape.StartPointGrid.Y + j && lineies.EndPoint.Y < myShape.StartPointGrid.Y + 20)
+                                                {
+                                                    Flag_End_Y = 1;
+                                                    CountJ = j;
+                                                    break;
+                                                }
+                                            }
+                                            Flag_End_X = 1;
+
+                                        }
+                                        if (Flag_End_Y == 1)
+                                        {
+                                            CountI = i;
+                                            break;
+                                        }
+                                    }
+                                    if (Flag_End_X == 0) Flag_End_Y = 0;
+                                    if (Flag_End_Y == 0) Flag_End_X = 0;
+                                    if (Flag_End_X == 0 && Flag_End_Y == 0)
+                                    {
+
+                                        for (int i = -10; i < 10; i++)
+                                        {
+                                            if (lineies.EndPoint.X >= myShape.StartPointGrid.X + myShape.Width / 2 + i && Flag_End_X != 2 && lineies.EndPoint.X < myShape.StartPointGrid.X + myShape.Width / 2 + 20)
+                                            {
+                                                for (int j = -10; j < 10; j++)
+                                                {
+                                                    if (lineies.EndPoint.Y >= myShape.StartPointGrid.Y + myShape.Height + j && lineies.EndPoint.Y < myShape.StartPointGrid.Y + myShape.Height + 20)
+                                                    {
+                                                        Flag_End_Y = 2;
+                                                        CountJ = j;
+                                                        break;
+                                                    }
+                                                }
+                                                Flag_End_X = 2;
+
+                                            }
+                                            if (Flag_End_Y == 2)
+                                            {
+                                                CountI = i;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (Flag_End_X == 0) Flag_End_Y = 0;
+                                    if (Flag_End_Y == 0) Flag_End_X = 0;
+                                    if (Flag_End_X == 0 && Flag_End_Y == 0)
+                                    {
+                                        for (int i = -10; i < 10; i++)
+                                        {
+                                            if (lineies.EndPoint.X >= myShape.StartPointGrid.X + i && Flag_End_X != 3 && lineies.EndPoint.X < myShape.StartPointGrid.X + 20)
+                                            {
+                                                for (int j = -10; j < 10; j++)
+                                                {
+                                                    if (lineies.EndPoint.Y >= myShape.StartPointGrid.Y + myShape.Height / 2 + j && lineies.EndPoint.Y < myShape.StartPointGrid.Y + myShape.Height / 2 + 20)
+                                                    {
+                                                        Flag_End_Y = 3;
+                                                        CountJ = j;
+                                                        break;
+                                                    }
+                                                }
+                                                Flag_End_X = 3;
+
+                                            }
+                                            if (Flag_End_Y == 3)
+                                            {
+                                                CountI = i;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (Flag_End_X == 0) Flag_End_Y = 0;
+                                    if (Flag_End_Y == 0) Flag_End_X = 0;
+                                    if (Flag_End_X == 0 && Flag_End_Y == 0)
+                                    {
+                                        for (int i = -10; i < 10; i++)
+                                        {
+                                            if (lineies.EndPoint.X >= myShape.StartPointGrid.X + myShape.Width + i && Flag_End_X != 4 && lineies.EndPoint.X < myShape.StartPointGrid.X + myShape.Width + 20)
+                                            {
+                                                for (int j = -10; j < 10; j++)
+                                                {
+                                                    if (lineies.EndPoint.Y >= myShape.StartPointGrid.Y + myShape.Height / 2 + j && lineies.EndPoint.Y < myShape.StartPointGrid.Y + myShape.Height / 2 + 20)
+                                                    {
+                                                        Flag_End_Y = 4;
+                                                        CountJ = j;
+                                                        break;
+                                                    }
+                                                }
+                                                Flag_End_X = 4;
+
+                                            }
+                                            if (Flag_End_Y == 4)
+                                            {
+                                                CountI = i;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (Flag_End_X == 0) Flag_End_Y = 0;
+                                    if (Flag_End_Y == 0) Flag_End_X = 0;
+                                    if (Flag_End_Y == 1 && Flag_End_X == 1)
+                                    {
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y);
+                                        lineies.ListPoint.Add(new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y));
+                                    }
+                                    if (Flag_End_Y == 2 && Flag_End_X == 2)
+                                    {
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y + myShape.Height);
+                                    }
+                                    if (Flag_End_Y == 3 && Flag_End_X == 3)
+                                    {
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                    }
+                                    if (Flag_End_Y == 4 && Flag_End_X == 4)
+                                    {
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                    }
+                                }
+                                //}
+                                
+                            }
+                            
                         }
                     }
                 }
@@ -374,11 +562,19 @@ namespace RedactorDiagramClassov.Views
 
                 connector.EndPoint = new Point(
                         currentPointerPosition.X - 1,
-                        currentPointerPosition.Y - 1); // отнимать если уменьшилась прибавлять если увеличилась
+                        currentPointerPosition.Y - 1);
+                // отнимать если уменьшилась прибавлять если увеличилась
+                if (connector.TypeLine == "Assotiatioin")
+                {
+                    /*connector.PointsBline.Add(connector.EndPoint);
+                    connector.PointsBline.Add(new Point(connector.EndPoint.X - 10, connector.EndPoint.Y - 10));
+                    connector.PointsBline.Add(connector.EndPoint);
+                    connector.PointsBline.Add(new Point(connector.EndPoint.X + 10, connector.EndPoint.Y - 10));*/
+                }
+
             }
         }
-        private void PointerPressedReleasedDrawLine(object? sender,
-           PointerReleasedEventArgs pointerReleasedEventArgs)
+        private void PointerPressedReleasedDrawLine(object? sender, PointerReleasedEventArgs pointerReleasedEventArgs)
         {
             this.PointerMoved -= PointerMoveDrawLine;
             this.PointerReleased -= PointerPressedReleasedDrawLine;
@@ -399,6 +595,8 @@ namespace RedactorDiagramClassov.Views
                 {
                     MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1] as MyLine;
                     connector.SecondFig = eli;
+                    connector.NameEnd = eli.Name;
+
                     return;
                 }
             }

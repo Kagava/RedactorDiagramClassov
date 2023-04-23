@@ -4,22 +4,17 @@
 		xmlns:models="clr-namespace:RedactorDiagramClassov.Models">
 		
 	<Design.PreviewWith>
-		
+		<controls:ClassInsideaxaml />	
   </Design.PreviewWith>
 
   <Style Selector="controls|ClassInsideaxaml">
     <!-- Set Defaults -->
     <Setter Property="Template">
 		<ControlTemplate>
-			<ItemsControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Items="{TemplateBinding MyCollection}" >
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<Panel Width ="{TemplateBinding Width}" Height ="{TemplateBinding Height}"> 
-							<TextBlock Text ="AAAAA"/>
-						</Panel>
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
-			</ItemsControl>
+			<Panel>
+				<Line StartPoint="{TemplateBinding CustomX}" EndPoint="{TemplateBinding CustomY}" Stroke="Black" StrokeThickness="1"/>
+				<Polyline Points="{TemplateBinding CustomListTipPoints}" Fill="Black" StrokeThickness="2" Stroke="Black"/>
+			</Panel>
 		</ControlTemplate>
     </Setter>
   </Style>

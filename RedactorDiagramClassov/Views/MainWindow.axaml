@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:models="clr-namespace:RedactorDiagramClassov.Models"
 		xmlns:controls="clr-namespace:RedactorDiagramClassov.Views.Control"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600" Width="1500" Height="900"
         x:Class="RedactorDiagramClassov.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="RedactorDiagramClassov">
@@ -20,24 +20,48 @@
 			
 			<RadioButton IsChecked="{Binding IsDrag}"
 						 GroupName="PaintOption"
-						 MinWidth="80"
+						 MinWidth="60"
 						 Content="Drag"/>
 			<RadioButton IsChecked="{Binding IsSkale}"
 						 GroupName="PaintOption"
-						 MinWidth="80"
+						 MinWidth="60"
 						 Content="Skale"/>
 			<RadioButton IsChecked="{Binding IsClass}"
 						 GroupName="PaintOption"
-						 MinWidth="80"
+						 MinWidth="60"
 						 Content="Class"/>
 			<RadioButton IsChecked="{Binding IsInterface}"
 						 GroupName="PaintOption"
-						 MinWidth="80"
+						 MinWidth="100"
 						 Content="Interface"/>
 			<RadioButton IsChecked="{Binding IsDrawLine}"
 						 GroupName="PaintOption"
-						 MinWidth="80"
+						 MinWidth="100"
 						 Content="DrawLine"/>
+			<RadioButton IsChecked="{Binding IsAssotiatioin}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Assotiatioin"/>
+			<RadioButton IsChecked="{Binding IsNasledovanie}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Nasledovanie"/>
+			<RadioButton IsChecked="{Binding IsRealisation}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Realisation"/>
+			<RadioButton IsChecked="{Binding IsZavisimost}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Zavisimost"/>
+			<RadioButton IsChecked="{Binding IsAgrigation}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Agrigation"/>
+			<RadioButton IsChecked="{Binding isComposition}"
+						 GroupName="Lines"
+						 MinWidth="100"
+						 Content="Composition"/>
 			
 		</StackPanel>
 	</Border>
@@ -63,8 +87,7 @@
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
 
-						   <controls:ClassInsideaxaml Height="{Binding Height}"
-									 Width="{Binding Width}" MyCollection="{Binding FillClasses}"/>
+						   
 						
 						   
 						   <!--<TextBlock Text="{Binding NameC}" Grid.Row="0"/>-->
@@ -218,11 +241,12 @@
 					   </Canvas>
 				   </DataTemplate>
 			   <DataTemplate DataType="{ x:Type	models:MyLine}">
-					   <Line StartPoint="{Binding StartPoint}"
-							 EndPoint="{Binding EndPoint}"
-							 Stroke="Black"
-							 StrokeThickness="1"
-								/>
+				   <controls:ClassInsideaxaml CustomX ="{Binding StartPoint}" 
+											  CustomY ="{Binding EndPoint}"
+												CustomListTipPoints="{Binding ListPoint}"
+											  />
+				   <!--ListBline ="{Binding PointsBline}"
+										      ListPolygon ="{Binding PointsPolygone}"-->
 					</DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>

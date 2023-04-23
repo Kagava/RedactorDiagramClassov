@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Avalonia;
 using DynamicData.Binding;
 
 namespace RedactorDiagramClassov.Models
@@ -11,21 +13,11 @@ namespace RedactorDiagramClassov.Models
     {
         private AbstractFig firstFig;
         private AbstractFig secondFig;
-        private string nameStart;
-        private string nameEnd;
-        public string NameStart
-        {
-            get => nameStart;
-            set => SetAndRaise(ref nameStart, value);
-        }
-        public string NameEnd
-        {
-            get => nameEnd;
-            set => SetAndRaise(ref nameEnd, value);
-        }
+        
         public MyLine(string name)
         {
             Name = name;
+            
         }
         public AbstractFig FirstFig
         {

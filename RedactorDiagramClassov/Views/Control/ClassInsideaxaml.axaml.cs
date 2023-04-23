@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
@@ -8,29 +9,26 @@ namespace RedactorDiagramClassov.Views.Control
 {
     public class ClassInsideaxaml : TemplatedControl
     {
-        public static readonly StyledProperty<double> CustomXProperty =
-            AvaloniaProperty.Register<ClassInsideaxaml, double>("CustomX");
-
-        public double CustomX 
+        public static readonly StyledProperty<Point> CustomXProperty =
+             AvaloniaProperty.Register<ClassInsideaxaml, Point>("CustomX");
+        public Point CustomX
         {
             get => GetValue(CustomXProperty);
             set => SetValue(CustomXProperty, value);
         }
-        public static readonly StyledProperty<double> CustomYProperty =
-            AvaloniaProperty.Register<ClassInsideaxaml, double>("CustomY");
-
-        public double CustomY
+        public static readonly StyledProperty<Point> CustomYProperty =
+            AvaloniaProperty.Register<ClassInsideaxaml, Point>("CustomY");
+        public Point CustomY
         {
             get => GetValue(CustomYProperty);
             set => SetValue(CustomYProperty, value);
         }
-        public static readonly StyledProperty<ObservableCollection<FillClass>> MyCollectionProperty =
-            AvaloniaProperty.Register<ClassInsideaxaml, ObservableCollection<FillClass>>("MyCollection");
-
-        public ObservableCollection<FillClass> MyCollection
+        public static readonly StyledProperty<List<Point>> CustomListTipPointsProperty =
+            AvaloniaProperty.Register<ClassInsideaxaml, List<Point>>("CustomListTipPoints");
+        public List<Point> CustomListTipPoints
         {
-            get => GetValue(MyCollectionProperty);
-            set => SetValue(MyCollectionProperty, value);
+            get => GetValue(CustomListTipPointsProperty);
+            set => SetValue(CustomListTipPointsProperty, value);
         }
     }
 }
