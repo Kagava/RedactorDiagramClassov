@@ -85,7 +85,13 @@ namespace RedactorDiagramClassov.Views
                             string typeLine = string.Empty;
                             if (mainWindowViewModel.IsAssotiatioin == true)
                             {
-                                typeLine = "Assotiatioin";
+
+                                mainWindowViewModel.AbstractFigs.Add(
+                                         new MyConnector("Connnect")
+                                         {
+                                             TypeLine = typeLine,
+                                             AngleToChange = 0
+                                         });
                             }
                             if (mainWindowViewModel.IsNasledovanie == true)
                             {
@@ -121,13 +127,62 @@ namespace RedactorDiagramClassov.Views
                                         TypeLine = typeLine,
                                         FlagList = true
                                     });
-                            mainWindowViewModel.AbstractFigs.Add(
-                                     new MyConnector("Connnect")
-                                     {
-                                         TypeLine = typeLine,
-                                         AngleToChange = 0
-                                     }) ;
 
+                            if (mainWindowViewModel.IsAssotiatioin == true)
+                            {
+
+                                mainWindowViewModel.AbstractFigs.Add(
+                                         new MyConnector("Connnect")
+                                         {
+                                             TypeLine = typeLine,
+                                             AngleToChange = 0
+                                         });
+                            }
+                            if (mainWindowViewModel.IsNasledovanie == true)
+                            {
+                                mainWindowViewModel.AbstractFigs.Add(
+                                          new MyNasledovanie("Connnect")
+                                          {
+                                              TypeLine = typeLine,
+                                              AngleToChange = 0
+                                          });
+                            }
+                            if (mainWindowViewModel.IsRealisation == true)
+                            {
+                                mainWindowViewModel.AbstractFigs.Add(
+                                          new MyRealisation("Connnect")
+                                          {
+                                              TypeLine = typeLine,
+                                              AngleToChange = 0
+                                          });
+                            }
+                            if (mainWindowViewModel.IsZavisimost == true)
+                            {
+                                mainWindowViewModel.AbstractFigs.Add(
+                                          new MyZavisimost("Connnect")
+                                          {
+                                              TypeLine = typeLine,
+                                              AngleToChange = 0
+                                          });
+                            }
+                            if (mainWindowViewModel.IsAgrigation == true)
+                            {
+                                mainWindowViewModel.AbstractFigs.Add(
+                                          new MyAgrigation("Connnect")
+                                          {
+                                              TypeLine = typeLine,
+                                              AngleToChange = 0
+                                          });
+                            }
+                            if (mainWindowViewModel.IsComposition == true)
+                            {
+                                mainWindowViewModel.AbstractFigs.Add(
+                                         new MyComposition("Connnect")
+                                         {
+                                             TypeLine = typeLine,
+                                             AngleToChange = 0
+                                         });
+                            }
                             /* MyLine lll = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyLine;
                          lll.ListPoint.Add(new Point(12, 12));
                          lll.ListPoint.Add(new Point(120, 120));
@@ -638,42 +693,142 @@ namespace RedactorDiagramClassov.Views
             var coords = pointerReleasedEventArgs.GetPosition(canvas);
 
             var element = canvas.InputHitTest(coords);
-            MainWindowViewModel viewModel = this.DataContext as MainWindowViewModel;
+            MainWindowViewModel mainWindowViewModel = this.DataContext as MainWindowViewModel;
 
             if (element is Ellipse ellipse)
             {
                 if (ellipse.DataContext is AbstractFig eli)
                 {
-                    MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 2] as MyLine;
+                    MyLine connector = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 2] as MyLine;
                     connector.SecondFig = eli;
                     connector.NameEnd = eli.Name;
-                    MyConnector connectorEnd = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1] as MyConnector;
-                    connectorEnd.XPointToCanvas = connector.EndPoint.X-10;
-                    connectorEnd.YPointToCanvas = connector.EndPoint.Y -10;
-                    connectorEnd.CenterX = connectorEnd.XPointToCanvas;
-                    connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                    cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
-                    cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
-                    cat3 = cat1 / cat2;
-                    if (connector.EndPoint.X <= connector.StartPoint.X)
+                    if (mainWindowViewModel.IsAssotiatioin == true)
                     {
-                        connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        MyConnector connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyConnector;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
                     }
-                    else
+                    if (mainWindowViewModel.IsNasledovanie == true)
                     {
-                        connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        MyNasledovanie connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyNasledovanie;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
+                        
                     }
+                    if (mainWindowViewModel.IsRealisation == true)
+                    {
+                        MyRealisation connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyRealisation;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
+                    }
+                    if (mainWindowViewModel.IsZavisimost == true)
+                    {
+                        MyZavisimost connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyZavisimost;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
+                    }
+                    if (mainWindowViewModel.IsAgrigation == true)
+                    {
+                        MyAgrigation connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyAgrigation;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
+                    }
+                    if (mainWindowViewModel.IsComposition == true)
+                    {
+                        MyComposition connectorEnd = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyComposition;
+                        connectorEnd.XPointToCanvas = connector.EndPoint.X - 10;
+                        connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
+                        connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                        connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                        cat3 = cat1 / cat2;
+                        if (connector.EndPoint.X <= connector.StartPoint.X)
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                        }
+                        else
+                        {
+                            connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                        }
+                    }
+                    
 
                 }
                 else
                 {
 
-                    viewModel.AbstractFigs.RemoveAt(viewModel.AbstractFigs.Count - 2);
+                    mainWindowViewModel.AbstractFigs.RemoveAt(mainWindowViewModel.AbstractFigs.Count - 2);
                 }
             }
             else
             {
-                viewModel.AbstractFigs.RemoveAt(viewModel.AbstractFigs.Count - 2);
+                mainWindowViewModel.AbstractFigs.RemoveAt(mainWindowViewModel.AbstractFigs.Count - 2);
             }
            
         }

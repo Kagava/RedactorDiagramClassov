@@ -58,7 +58,7 @@
 						 GroupName="Lines"
 						 MinWidth="100"
 						 Content="Agrigation"/>
-			<RadioButton IsChecked="{Binding isComposition}"
+			<RadioButton IsChecked="{Binding IsComposition}"
 						 GroupName="Lines"
 						 MinWidth="100"
 						 Content="Composition"/>
@@ -276,6 +276,146 @@
 								 Stroke="Black"
 								 StrokeThickness="2"/>
 						   
+					   </Canvas>
+				   </DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyNasledovanie}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}"
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+
+					   </Canvas>
+				   </DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyRealisation}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}"
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+
+					   </Canvas>
+				   </DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyZavisimost}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}"
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+
+					   </Canvas>
+				   </DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyAgrigation}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}"
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+
+					   </Canvas>
+				   </DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyComposition}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}"
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+
 					   </Canvas>
 				   </DataTemplate>
 			   </ItemsControl.DataTemplates>
