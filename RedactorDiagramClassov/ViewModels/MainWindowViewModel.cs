@@ -43,7 +43,6 @@ namespace RedactorDiagramClassov.ViewModels
             get => abstractFigs;
             set => this.RaiseAndSetIfChanged(ref abstractFigs, value);
         }
-        
         public bool IsDrag
         {
             get => isDrag;

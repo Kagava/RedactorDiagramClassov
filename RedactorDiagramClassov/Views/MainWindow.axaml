@@ -76,7 +76,7 @@
 			   </ItemsControl.ItemsPanel>
 			   <ItemsControl.DataTemplates>
 				   <DataTemplate DataType="{x:Type	models:MyClass}">
-					   <Canvas>
+					   <Canvas Panel.ZIndex="2">
 						   <Canvas.RenderTransform>
 							   <TransformGroup>
 								   <TranslateTransform
@@ -160,7 +160,7 @@
 				   </DataTemplate>
 				   
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
-					   <Canvas>
+					   <Canvas Panel.ZIndex="2">
 						   <Canvas.RenderTransform>
 							   <TransformGroup>
 								   <TranslateTransform
@@ -244,10 +244,40 @@
 				   <controls:ClassInsideaxaml CustomX ="{Binding StartPoint}" 
 											  CustomY ="{Binding EndPoint}"
 												CustomListTipPoints="{Binding ListPoint}"
+										  ZIndex="1"
 											  />
+				   
 				   <!--ListBline ="{Binding PointsBline}"
 										      ListPolygon ="{Binding PointsPolygone}"-->
 					</DataTemplate>
+				   <DataTemplate DataType="{ x:Type	models:MyConnector}">
+					   <!--
+					   <controls:TemplatedControl1 CustomX ="{Binding XPointToCanvas}" CustomY ="{Binding YPointToCanvas}"
+											  />-->
+					   <Canvas Width="20" Height="20" Background="Transparent" Panel.ZIndex="0">
+						   <Canvas.RenderTransform>
+							   <TransformGroup>
+								   <TranslateTransform
+									   X="{Binding XPointToCanvas}"
+									   Y="{Binding YPointToCanvas}"/>
+								   <ScaleTransform>
+								   </ScaleTransform>
+								   <RotateTransform Angle="{Binding AngleToChange}" 
+													CenterX="{Binding CenterX}"
+													CenterY="{Binding CenterY}"/>
+							   </TransformGroup>
+						   </Canvas.RenderTransform>
+						   <Line StartPoint="0 0"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 20"
+								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   
+					   </Canvas>
+				   </DataTemplate>
 			   </ItemsControl.DataTemplates>
 		   </ItemsControl>
 	   </Border>

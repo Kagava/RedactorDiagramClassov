@@ -1,0 +1,28 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:RedactorDiagramClassov.Views.Control"
+
+		xmlns:models="clr-namespace:RedactorDiagramClassov.Models">
+  <Design.PreviewWith>
+    <controls:TemplatedControl1 />
+  </Design.PreviewWith>
+
+  <Style Selector="controls|TemplatedControl1">
+    <!-- Set Defaults -->
+    <Setter Property="Template">
+      <ControlTemplate>
+		  <Canvas Width="20" Height="20" Background="Red">
+			  <Canvas.RenderTransform>
+				  <TransformGroup>
+					  <TranslateTransform
+						  X="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomX}"
+						  Y="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=CustomY}"/>
+					  <ScaleTransform>
+					  </ScaleTransform>
+				  </TransformGroup>
+			  </Canvas.RenderTransform>
+		  </Canvas>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

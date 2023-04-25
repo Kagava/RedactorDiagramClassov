@@ -11,10 +11,7 @@
     <!-- Set Defaults -->
     <Setter Property="Template">
 		<ControlTemplate>
-			<Panel>
-				<Line StartPoint="{TemplateBinding CustomX}" EndPoint="{TemplateBinding CustomY}" Stroke="Black" StrokeThickness="1"/>
-				<Polyline Points="{TemplateBinding CustomListTipPoints}" Fill="Black" StrokeThickness="2" Stroke="Black"/>
-			</Panel>
+			<Line StartPoint="{TemplateBinding CustomX}" EndPoint="{TemplateBinding CustomY}" Stroke="Black" StrokeThickness="1"></Line>
 		</ControlTemplate>
     </Setter>
   </Style>

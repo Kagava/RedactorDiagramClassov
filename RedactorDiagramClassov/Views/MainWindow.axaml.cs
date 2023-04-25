@@ -1,11 +1,17 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Shapes;
 using Avalonia.Input;
 using Avalonia.VisualTree;
+using DynamicData;
+using JetBrains.Annotations;
+using Microsoft.CodeAnalysis;
 using RedactorDiagramClassov.Models;
 using RedactorDiagramClassov.ViewModels;
 
@@ -18,6 +24,12 @@ namespace RedactorDiagramClassov.Views
         private Point pointerPositionIntoShape;
         private Point pointerPositionBegineLine;
         private Point pointerPositionEndLine;
+        public double cat1 = 0;
+        public double cat2 = 0;
+        public double cat3 = 0;
+        public int count = 0;
+        public int countCons = 0;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -105,12 +117,22 @@ namespace RedactorDiagramClassov.Views
                                         StartPoint = pointerPositionBegineLine,
                                         FirstFig = rectangle,
                                         NameStart = rectangle.Name,
-                                        TypeLine = typeLine,
                                         ListPoint = new List<Point>(),
+                                        TypeLine = typeLine,
                                         FlagList = true
                                     });
-                                MyLine lll = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyLine;
-                                this.PointerMoved += PointerMoveDrawLine;
+                            mainWindowViewModel.AbstractFigs.Add(
+                                     new MyConnector("Connnect")
+                                     {
+                                         TypeLine = typeLine,
+                                         AngleToChange = 0
+                                     }) ;
+
+                            /* MyLine lll = mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] as MyLine;
+                         lll.ListPoint.Add(new Point(12, 12));
+                         lll.ListPoint.Add(new Point(120, 120));
+                         lll.ListPoint.Add(new Point(50, 50));*/
+                            this.PointerMoved += PointerMoveDrawLine;
                                 this.PointerReleased += PointerPressedReleasedDrawLine;
                             }
                         }
@@ -259,6 +281,7 @@ namespace RedactorDiagramClassov.Views
                            currentPointerPosition.Y - pointerPositionIntoShape.Y);
                         foreach (AbstractFig lineies in mainWindowViewModel.AbstractFigs)
                         {
+                            
                             if(lineies.Name == "Line")
                             {
                                 int CountI = 0;
@@ -394,12 +417,17 @@ namespace RedactorDiagramClassov.Views
                                         }
                                     }
                                 //}      
-                            }                           
+                            }
+                            
                         }
+                        count = 0;
+                        
                         foreach (AbstractFig lineies in mainWindowViewModel.AbstractFigs)
                         {
+                            countCons = 0;
                             if (lineies.Name == "Line")
                             {
+                                count++;
                                 int CountI = 0;
                                 int CountJ = 0;
                                 //if (mainWindowViewModel.AbstractFigs[mainWindowViewModel.AbstractFigs.Count - 1] is MyLine hehe)
@@ -532,12 +560,41 @@ namespace RedactorDiagramClassov.Views
                                     {
                                         lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width, myShape.StartPointGrid.Y + myShape.Height / 2);
                                     }
+                                   
+
                                 }
-                                //}
-                                
+                                foreach (AbstractFig connectors in mainWindowViewModel.AbstractFigs)
+                                {
+                                   
+                                    if (connectors.Name == "Connnect")
+                                    {
+                                        countCons++;
+                                        if(count == countCons)
+                                        {
+                                            connectors.XPointToCanvas = lineies.EndPoint.X - 10;
+                                            connectors.YPointToCanvas = lineies.EndPoint.Y - 10;
+                                            connectors.CenterX = connectors.XPointToCanvas;
+                                            connectors.CenterY = connectors.YPointToCanvas;
+                                            cat2 = lineies.EndPoint.X - lineies.StartPoint.X;
+                                            cat1 = lineies.EndPoint.Y - lineies.StartPoint.Y;
+                                            cat3 = cat1 / cat2;
+                                            if (lineies.EndPoint.X <= lineies.StartPoint.X)
+                                            {
+                                                connectors.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                                            }
+                                            else
+                                            {
+                                                connectors.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                                            }
+                                        }
+                                    }
+                                }
+
                             }
                             
                         }
+                        
+                        
                     }
                 }
             }
@@ -553,24 +610,18 @@ namespace RedactorDiagramClassov.Views
             if (this.DataContext is MainWindowViewModel viewModel)
             {
                 Debug.WriteLine(sender);
-                MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1] as MyLine;
+                MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 2] as MyLine;
+                
                 Point currentPointerPosition = pointerEventArgs
                     .GetPosition(
                     this.GetVisualDescendants()
                     .OfType<Canvas>()
                     .FirstOrDefault());
-
                 connector.EndPoint = new Point(
                         currentPointerPosition.X - 1,
                         currentPointerPosition.Y - 1);
+               
                 // отнимать если уменьшилась прибавлять если увеличилась
-                if (connector.TypeLine == "Assotiatioin")
-                {
-                    /*connector.PointsBline.Add(connector.EndPoint);
-                    connector.PointsBline.Add(new Point(connector.EndPoint.X - 10, connector.EndPoint.Y - 10));
-                    connector.PointsBline.Add(connector.EndPoint);
-                    connector.PointsBline.Add(new Point(connector.EndPoint.X + 10, connector.EndPoint.Y - 10));*/
-                }
 
             }
         }
@@ -578,8 +629,8 @@ namespace RedactorDiagramClassov.Views
         {
             this.PointerMoved -= PointerMoveDrawLine;
             this.PointerReleased -= PointerPressedReleasedDrawLine;
-
-            var canvas = this.GetVisualDescendants()
+           
+           var canvas = this.GetVisualDescendants()
                         .OfType<Canvas>()
                         .FirstOrDefault(canvas => string.IsNullOrEmpty(canvas.Name) == false &&
                         canvas.Name.Equals("canvas"));
@@ -593,15 +644,38 @@ namespace RedactorDiagramClassov.Views
             {
                 if (ellipse.DataContext is AbstractFig eli)
                 {
-                    MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1] as MyLine;
+                    MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 2] as MyLine;
                     connector.SecondFig = eli;
                     connector.NameEnd = eli.Name;
+                    MyConnector connectorEnd = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1] as MyConnector;
+                    connectorEnd.XPointToCanvas = connector.EndPoint.X-10;
+                    connectorEnd.YPointToCanvas = connector.EndPoint.Y -10;
+                    connectorEnd.CenterX = connectorEnd.XPointToCanvas;
+                    connectorEnd.CenterY = connectorEnd.YPointToCanvas;
+                    cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                    cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                    cat3 = cat1 / cat2;
+                    if (connector.EndPoint.X <= connector.StartPoint.X)
+                    {
+                        connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                    }
+                    else
+                    {
+                        connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                    }
 
-                    return;
+                }
+                else
+                {
+
+                    viewModel.AbstractFigs.RemoveAt(viewModel.AbstractFigs.Count - 2);
                 }
             }
-
-            viewModel.AbstractFigs.RemoveAt(viewModel.AbstractFigs.Count - 1);
+            else
+            {
+                viewModel.AbstractFigs.RemoveAt(viewModel.AbstractFigs.Count - 2);
+            }
+           
         }
     }
 }

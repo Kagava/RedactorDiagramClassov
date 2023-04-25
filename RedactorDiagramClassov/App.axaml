@@ -8,8 +8,7 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
-		<StyleInclude Source="/Views/Control/ClassInsideaxaml.axaml">
-			
-		</StyleInclude>
+		<StyleInclude Source="/Views/Control/ClassInsideaxaml.axaml"/>
+		<StyleInclude Source="/Views/Control/TemplatedControl1.axaml"/>
     </Application.Styles>
 </Application>

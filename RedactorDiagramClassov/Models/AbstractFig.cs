@@ -174,6 +174,7 @@ namespace RedactorDiagramClassov.Models
         public event EventHandler<ChangeStartPointEventArgs> ChangeStartPoint;
         private void CalculateTip()
         {
+            
             if (FlagList == true)
             {
                 ListPoint.Add(new Point(EndPoint.X, EndPoint.Y));
@@ -181,6 +182,52 @@ namespace RedactorDiagramClassov.Models
                 ListPoint.Add((EndPoint));
                 ListPoint.Add((new Point(EndPoint.X + 10, EndPoint.Y - 10)));
             }
+        }
+        private string nameConnector;
+        public double xPointToCanvas;
+        public double yPointToCanvas;
+        public double angleToChange;
+        public double centerX;
+        public double centerY;
+        public double CenterX
+        {
+            get => centerX;
+            set => SetAndRaise(ref centerX, value);
+        }
+        public double CenterY
+        {
+            get => centerY;
+            set => SetAndRaise(ref centerY, value);
+        }
+        public double AngleToChange
+        {
+            get => angleToChange;
+            set
+            {
+                SetAndRaise(ref angleToChange, value);
+            }
+        }
+        public double XPointToCanvas
+        {
+            get => xPointToCanvas;
+            set
+            {
+                SetAndRaise(ref xPointToCanvas, value);
+            }
+        }
+        public double YPointToCanvas
+        {
+            get => yPointToCanvas;
+            set
+            {
+                SetAndRaise(ref yPointToCanvas, value);
+            }
+
+        }
+        public string NameConnector
+        {
+            get => nameConnector;
+            set => SetAndRaise(ref nameConnector, value);
         }
     }
 
