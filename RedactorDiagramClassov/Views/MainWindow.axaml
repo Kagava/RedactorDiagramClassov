@@ -244,7 +244,8 @@
 				   <controls:ClassInsideaxaml CustomX ="{Binding StartPoint}" 
 											  CustomY ="{Binding EndPoint}"
 												CustomListTipPoints="{Binding ListPoint}"
-										  ZIndex="1"
+										  ZIndex="{Binding GaudeOFLine}"
+										 
 											  />
 				   
 				   <!--ListBline ="{Binding PointsBline}"
@@ -303,6 +304,10 @@
 								 EndPoint="10 10"
 								 Stroke="Black"
 								 StrokeThickness="2"/>
+						   <Line StartPoint="0 0"
+								EndPoint="0 20"
+								Stroke="Black"
+								StrokeThickness="2"/>
 
 					   </Canvas>
 				   </DataTemplate>
@@ -329,6 +334,10 @@
 								 StrokeThickness="2"/>
 						   <Line StartPoint="0 20"
 								 EndPoint="10 10"
+								 Stroke="Black"
+								 StrokeThickness="2"/>
+						   <Line StartPoint="0 0"
+								 EndPoint="0 20"
 								 Stroke="Black"
 								 StrokeThickness="2"/>
 
@@ -359,6 +368,7 @@
 								 EndPoint="10 10"
 								 Stroke="Black"
 								 StrokeThickness="2"/>
+						   
 
 					   </Canvas>
 				   </DataTemplate>
@@ -379,14 +389,7 @@
 													CenterY="{Binding CenterY}"/>
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
-						   <Line StartPoint="0 0"
-								 EndPoint="10 10"
-								 Stroke="Black"
-								 StrokeThickness="2"/>
-						   <Line StartPoint="0 20"
-								 EndPoint="10 10"
-								 Stroke="Black"
-								 StrokeThickness="2"/>
+						   <Polygon Points="0,10 10,5 20,10 10,15" Fill="White" Stroke="Black" StrokeThickness="2"/>
 
 					   </Canvas>
 				   </DataTemplate>
@@ -407,14 +410,7 @@
 													CenterY="{Binding CenterY}"/>
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
-						   <Line StartPoint="0 0"
-								 EndPoint="10 10"
-								 Stroke="Black"
-								 StrokeThickness="2"/>
-						   <Line StartPoint="0 20"
-								 EndPoint="10 10"
-								 Stroke="Black"
-								 StrokeThickness="2"/>
+						   <Polygon Points="0,10 10,5 20,10 10,15" Fill="Black" />
 
 					   </Canvas>
 				   </DataTemplate>

@@ -83,15 +83,11 @@ namespace RedactorDiagramClassov.Views
                             if (control.DataContext is AbstractFig rectangle)
                             {
                             string typeLine = string.Empty;
+                            int gaude = 0;
                             if (mainWindowViewModel.IsAssotiatioin == true)
                             {
+                                typeLine = "Assotiatioin";
 
-                                mainWindowViewModel.AbstractFigs.Add(
-                                         new MyConnector("Connnect")
-                                         {
-                                             TypeLine = typeLine,
-                                             AngleToChange = 0
-                                         });
                             }
                             if (mainWindowViewModel.IsNasledovanie == true)
                             {
@@ -99,10 +95,12 @@ namespace RedactorDiagramClassov.Views
                             }
                             if (mainWindowViewModel.IsRealisation == true)
                             {
+                                gaude = 2;
                                 typeLine = "Realisation";
                             }
                             if (mainWindowViewModel.IsZavisimost == true)
                             {
+                                gaude = 2;
                                 typeLine = "Zavisimost";
                             }
                             if (mainWindowViewModel.IsAgrigation == true)
@@ -117,13 +115,14 @@ namespace RedactorDiagramClassov.Views
                                     this.GetVisualDescendants()
                                     .OfType<Canvas>()
                                     .FirstOrDefault());
+
                                 mainWindowViewModel.AbstractFigs.Add(
                                     new MyLine("Line")
                                     {
                                         StartPoint = pointerPositionBegineLine,
                                         FirstFig = rectangle,
                                         NameStart = rectangle.Name,
-                                        ListPoint = new List<Point>(),
+                                       GaudeOFLine = gaude,
                                         TypeLine = typeLine,
                                         FlagList = true
                                     });
@@ -134,15 +133,17 @@ namespace RedactorDiagramClassov.Views
                                 mainWindowViewModel.AbstractFigs.Add(
                                          new MyConnector("Connnect")
                                          {
+                                             GaudeOFLine = 0,
                                              TypeLine = typeLine,
                                              AngleToChange = 0
-                                         });
+                                         }) ;
                             }
                             if (mainWindowViewModel.IsNasledovanie == true)
                             {
                                 mainWindowViewModel.AbstractFigs.Add(
                                           new MyNasledovanie("Connnect")
                                           {
+                                              GaudeOFLine = 0,
                                               TypeLine = typeLine,
                                               AngleToChange = 0
                                           });
@@ -152,6 +153,7 @@ namespace RedactorDiagramClassov.Views
                                 mainWindowViewModel.AbstractFigs.Add(
                                           new MyRealisation("Connnect")
                                           {
+                                              GaudeOFLine = 3,
                                               TypeLine = typeLine,
                                               AngleToChange = 0
                                           });
@@ -161,6 +163,8 @@ namespace RedactorDiagramClassov.Views
                                 mainWindowViewModel.AbstractFigs.Add(
                                           new MyZavisimost("Connnect")
                                           {
+
+                                              GaudeOFLine = 3,
                                               TypeLine = typeLine,
                                               AngleToChange = 0
                                           });
@@ -170,6 +174,7 @@ namespace RedactorDiagramClassov.Views
                                 mainWindowViewModel.AbstractFigs.Add(
                                           new MyAgrigation("Connnect")
                                           {
+                                              GaudeOFLine = 0,
                                               TypeLine = typeLine,
                                               AngleToChange = 0
                                           });
@@ -179,6 +184,7 @@ namespace RedactorDiagramClassov.Views
                                 mainWindowViewModel.AbstractFigs.Add(
                                          new MyComposition("Connnect")
                                          {
+                                             GaudeOFLine = 0,
                                              TypeLine = typeLine,
                                              AngleToChange = 0
                                          });
@@ -601,7 +607,6 @@ namespace RedactorDiagramClassov.Views
                                     if (Flag_End_Y == 1 && Flag_End_X == 1)
                                     {
                                         lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y);
-                                        lineies.ListPoint.Add(new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y));
                                     }
                                     if (Flag_End_Y == 2 && Flag_End_X == 2)
                                     {
@@ -709,7 +714,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)
@@ -728,7 +733,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)
@@ -739,7 +744,7 @@ namespace RedactorDiagramClassov.Views
                         {
                             connectorEnd.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
                         }
-                        
+
                     }
                     if (mainWindowViewModel.IsRealisation == true)
                     {
@@ -748,7 +753,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)
@@ -767,7 +772,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)
@@ -786,7 +791,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)
@@ -805,7 +810,7 @@ namespace RedactorDiagramClassov.Views
                         connectorEnd.YPointToCanvas = connector.EndPoint.Y - 10;
                         connectorEnd.CenterX = connectorEnd.XPointToCanvas;
                         connectorEnd.CenterY = connectorEnd.YPointToCanvas;
-                        cat2 = Math.Abs(connector.EndPoint.X - connector.StartPoint.X);
+                        cat2 = connector.EndPoint.X - connector.StartPoint.X;
                         cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
                         cat3 = cat1 / cat2;
                         if (connector.EndPoint.X <= connector.StartPoint.X)

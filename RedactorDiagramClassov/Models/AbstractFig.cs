@@ -16,6 +16,7 @@ namespace RedactorDiagramClassov.Models
         public Point startPoint;
         public Point startPointGrid;
         public Point endPoint;
+        public string colorLine;
         public double width;
         public double height;
         public double upX;
@@ -35,6 +36,17 @@ namespace RedactorDiagramClassov.Models
         private string typeLine;
         public List<Point> listPoint;
         private bool flagList;
+        private int gaudeOfLine;
+        public int GaudeOFLine
+        {
+            get => gaudeOfLine;
+            set => SetAndRaise(ref gaudeOfLine, value);
+        }
+        public string ColorLine
+        {
+            get => colorLine;
+            set => SetAndRaise(ref colorLine, value);
+        }
         public bool FlagList
         {
             get => flagList;
@@ -92,7 +104,6 @@ namespace RedactorDiagramClassov.Models
             set 
             {
                 SetAndRaise(ref endPoint, value);
-                CalculateTip();
             }
 
         }
@@ -172,17 +183,7 @@ namespace RedactorDiagramClassov.Models
             set => SetAndRaise(ref elli4Y, value);
         }
         public event EventHandler<ChangeStartPointEventArgs> ChangeStartPoint;
-        private void CalculateTip()
-        {
-            
-            if (FlagList == true)
-            {
-                ListPoint.Add(new Point(EndPoint.X, EndPoint.Y));
-                ListPoint.Add(new Point(EndPoint.X - 10, EndPoint.Y - 10));
-                ListPoint.Add((EndPoint));
-                ListPoint.Add((new Point(EndPoint.X + 10, EndPoint.Y - 10)));
-            }
-        }
+       
         private string nameConnector;
         public double xPointToCanvas;
         public double yPointToCanvas;

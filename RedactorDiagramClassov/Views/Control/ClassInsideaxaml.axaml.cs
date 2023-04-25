@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 using RedactorDiagramClassov.Models;
 
 namespace RedactorDiagramClassov.Views.Control
@@ -29,6 +30,13 @@ namespace RedactorDiagramClassov.Views.Control
         {
             get => GetValue(CustomListTipPointsProperty);
             set => SetValue(CustomListTipPointsProperty, value);
+        }
+        public static readonly StyledProperty<SolidColorBrush> FillLineProperty =
+            AvaloniaProperty.Register<ClassInsideaxaml, SolidColorBrush>("FillLine");
+        public SolidColorBrush FillLine
+        {
+            get => GetValue(FillLineProperty);
+            set => SetValue(FillLineProperty, value);
         }
     }
 }
