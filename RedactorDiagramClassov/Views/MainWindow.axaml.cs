@@ -462,19 +462,19 @@ namespace RedactorDiagramClassov.Views
                                         if (Flag_End_Y == 0) Flag_End_X = 0;
                                         if (Flag_End_Y == 1 && Flag_End_X == 1)
                                         {
-                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y);
+                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2 + 6, myShape.StartPointGrid.Y+ 3.5);
                                         }
                                         if (Flag_End_Y == 2 && Flag_End_X == 2)
                                         {
-                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y + myShape.Height);
+                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2+6, myShape.StartPointGrid.Y + myShape.Height+3.5);
                                         }
                                         if (Flag_End_Y == 3 && Flag_End_X == 3)
                                         {
-                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X+6, myShape.StartPointGrid.Y + myShape.Height / 2+3.5);
                                         }
                                         if (Flag_End_Y == 4 && Flag_End_X == 4)
                                         {
-                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                            lineies.StartPoint = new Point(myShape.StartPointGrid.X + myShape.Width+6, myShape.StartPointGrid.Y + myShape.Height / 2+3.5);
                                         }
                                     }
                                 //}      
@@ -606,19 +606,19 @@ namespace RedactorDiagramClassov.Views
                                     if (Flag_End_Y == 0) Flag_End_X = 0;
                                     if (Flag_End_Y == 1 && Flag_End_X == 1)
                                     {
-                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y);
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2 + 6, myShape.StartPointGrid.Y+3.5);
                                     }
                                     if (Flag_End_Y == 2 && Flag_End_X == 2)
                                     {
-                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2, myShape.StartPointGrid.Y + myShape.Height);
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width / 2 +6 , myShape.StartPointGrid.Y + myShape.Height+3.5);
                                     }
                                     if (Flag_End_Y == 3 && Flag_End_X == 3)
                                     {
-                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X+6, myShape.StartPointGrid.Y + myShape.Height / 2+3.5);
                                     }
                                     if (Flag_End_Y == 4 && Flag_End_X == 4)
                                     {
-                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width, myShape.StartPointGrid.Y + myShape.Height / 2);
+                                        lineies.EndPoint = new Point(myShape.StartPointGrid.X + myShape.Width+6, myShape.StartPointGrid.Y + myShape.Height / 2+3.5);
                                     }
                                    
 
@@ -671,7 +671,7 @@ namespace RedactorDiagramClassov.Views
             {
                 Debug.WriteLine(sender);
                 MyLine connector = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 2] as MyLine;
-                
+                AbstractFig que = viewModel.AbstractFigs[viewModel.AbstractFigs.Count - 1];
                 Point currentPointerPosition = pointerEventArgs
                     .GetPosition(
                     this.GetVisualDescendants()
@@ -681,6 +681,19 @@ namespace RedactorDiagramClassov.Views
                         currentPointerPosition.X - 1,
                         currentPointerPosition.Y - 1);
                
+                que.CenterX = que.XPointToCanvas;
+                que.CenterY = que.YPointToCanvas;
+                cat2 = connector.EndPoint.X - connector.StartPoint.X;
+                cat1 = connector.EndPoint.Y - connector.StartPoint.Y;
+                cat3 = cat1 / cat2;
+                if (connector.EndPoint.X <= connector.StartPoint.X)
+                {
+                    que.AngleToChange = Math.Atan(cat3) * 180 / Math.PI - 180;
+                }
+                else
+                {
+                    que.AngleToChange = Math.Atan(cat3) * 180 / Math.PI;
+                }
                 // отнимать если уменьшилась прибавлять если увеличилась
 
             }

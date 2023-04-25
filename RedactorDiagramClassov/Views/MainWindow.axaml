@@ -76,7 +76,7 @@
 			   </ItemsControl.ItemsPanel>
 			   <ItemsControl.DataTemplates>
 				   <DataTemplate DataType="{x:Type	models:MyClass}">
-					   <Canvas Panel.ZIndex="2">
+					   <Canvas Panel.ZIndex="600" ZIndex="600">
 						   <Canvas.RenderTransform>
 							   <TransformGroup>
 								   <TranslateTransform
@@ -160,7 +160,7 @@
 				   </DataTemplate>
 				   
 				   <DataTemplate DataType="{x:Type	models:MyInterface}">
-					   <Canvas Panel.ZIndex="2">
+					   <Canvas Panel.ZIndex="600" ZIndex="600">
 						   <Canvas.RenderTransform>
 							   <TransformGroup>
 								   <TranslateTransform
