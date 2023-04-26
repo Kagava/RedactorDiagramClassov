@@ -13,6 +13,7 @@ namespace RedactorDiagramClassov.Models
         {
             
             Name = name;
+            DisplayName = name;
         }
         
     }

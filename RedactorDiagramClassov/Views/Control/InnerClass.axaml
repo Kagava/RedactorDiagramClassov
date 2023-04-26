@@ -1,0 +1,59 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:RedactorDiagramClassov.Views.Control">
+  <Design.PreviewWith>
+    <controls:InnerClass />
+  </Design.PreviewWith>
+
+  <Style Selector="controls|InnerClass">
+    <!-- Set Defaults -->
+    <Setter Property="Template">
+      <ControlTemplate>
+		<Panel Background="Black" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" >
+			<Panel.RenderTransform>
+				<TransformGroup>
+					<TranslateTransform
+						X="15"
+						Y="15"/>
+					<ScaleTransform>
+					</ScaleTransform>
+				</TransformGroup>
+			</Panel.RenderTransform>
+			<Border  Background="Beige" 
+					BorderBrush="Green"
+					BorderThickness="2" >
+				<Grid Background="Azure" RowDefinitions="0.2*,0.4*,0.4*" >
+					<Viewbox  Grid.Row="0" Width="{TemplateBinding Width}" >
+						<TextBlock Text="{Binding #V1Text.Text}" Background="White"/>
+					</Viewbox>
+					<Viewbox  Grid.Row="1" Width="{TemplateBinding Width}" >
+						<TextBlock Text="{Binding #V2Text.Text}" Background="Blue"/>
+					</Viewbox>
+					<Viewbox  Grid.Row="2" Width="{TemplateBinding Width}" >
+						<TextBlock Text="{Binding #V3Text.Text}" Background="Red" />
+					</Viewbox>
+				</Grid>
+			</Border>
+			<Border IsVisible="False" 
+					Name="downGridBorder" 
+					Background="Bisque"
+					BorderBrush="Green"
+					BorderThickness="2" >
+				<Grid Background="Black" RowDefinitions="0.2*,0.4*,0.4*" Name="downGrid">
+					<Viewbox   Name="V1" Grid.Row="0" Width="{TemplateBinding Width}">
+						<TextBox Text="{TemplateBinding CustomName}" Background="White" Name="V1Text"/>
+					</Viewbox>
+					<Viewbox   Name="V2" Grid.Row="1" Width="{TemplateBinding Width}">
+						<TextBox AcceptsReturn="True" Text="{TemplateBinding CustomAtribute}" Background="Blue" Name="V2Text"/>
+					</Viewbox>
+					<Viewbox   Name="V3" Grid.Row="2" Width="{TemplateBinding Width}">
+						<TextBox AcceptsReturn="True" Text="{TemplateBinding CustomOperatuon}" Background="Red" Name="V3Text"/>
+					</Viewbox>
+					
+				</Grid>
+			</Border>
+		</Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

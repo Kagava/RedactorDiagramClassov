@@ -12,6 +12,25 @@ namespace RedactorDiagramClassov.Models
 {
     public abstract class AbstractFig : AbstractNotifyPropertyChanged
     {
+        public string? displayName;
+        public string? displayAtributes;
+        public string? displayOperations;
+        public string DisplayName
+        {
+            get => displayName;
+            set => SetAndRaise(ref displayName, value);
+        }
+        public string DisplayAtributes
+        {
+            get => displayAtributes;
+            set => SetAndRaise(ref displayAtributes, value);
+        }
+        public string DisplayOperations
+        {
+            get => displayOperations;
+            set => SetAndRaise(ref displayOperations, value);
+        }
+
         public string? name;
         public Point startPoint;
         public Point startPointGrid;
@@ -19,6 +38,8 @@ namespace RedactorDiagramClassov.Models
         public string colorLine;
         public double width;
         public double height;
+        public double widthPanel;
+        public double heightPanel;
         public double upX;
         public double upY;
         public double downX;
@@ -116,6 +137,16 @@ namespace RedactorDiagramClassov.Models
         {
             get => height;
             set => SetAndRaise(ref height, value);
+        }
+        public double WidthPanel
+        {
+            get => widthPanel;
+            set => SetAndRaise(ref widthPanel, value);
+        }
+        public double HeightPanel
+        {
+            get => heightPanel;
+            set => SetAndRaise(ref heightPanel, value);
         }
         public Point StartPointGrid
         {

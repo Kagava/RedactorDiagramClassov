@@ -10,5 +10,7 @@
         <FluentTheme Mode="Light"/>
 		<StyleInclude Source="/Views/Control/ClassInsideaxaml.axaml"/>
 		<StyleInclude Source="/Views/Control/TemplatedControl1.axaml"/>
+		<StyleInclude Source="/Views/Control/InnerClass.axaml"/>
+		<StyleInclude Source="/Views/Control/InnerInterface.axaml"/>
     </Application.Styles>
 </Application>

@@ -46,7 +46,7 @@ namespace RedactorDiagramClassov.Views
                 .OfType<Canvas>()
                 .FirstOrDefault());
 
-                    if (this.DataContext is MainWindowViewModel mainWindowViewModel)
+                    if (this.DataContext is MainWindowViewModel mainWindowViewModel )
                     {
 
                         if (mainWindowViewModel.IsClass == true)
@@ -237,8 +237,10 @@ namespace RedactorDiagramClassov.Views
                     editClass.Elli4X = editClass.UpX;
                     editClass.Elli4Y = editClass.DownY / 2;
                     editClass.Width = currentPointerPosition.X - pointPointerPressed.X;
+                    editClass.WidthPanel = editClass.Width - 30;
                     editClass.Height = currentPointerPosition.Y - pointPointerPressed.Y;
-                    
+                    editClass.HeightPanel = editClass.Height - 30;
+
                 }
                 if (mainWindowViewModel.IsInterface == true)
                 {
@@ -263,6 +265,8 @@ namespace RedactorDiagramClassov.Views
                     editInterface.Elli4Y = editInterface.DownY / 2;
                     editInterface.Width = currentPointerPosition.X - pointPointerPressed.X;
                     editInterface.Height = currentPointerPosition.Y - pointPointerPressed.Y;
+                    editInterface.WidthPanel = editInterface.Width-30;
+                    editInterface.HeightPanel = editInterface.Height - 30;
                 }
                 /*if (mainWindowViewModel.IsDrawLine == true && pointerReleasedEventArgs.Source is Ellipse eli)
                 {
@@ -846,7 +850,8 @@ namespace RedactorDiagramClassov.Views
             }
             else
             {
-                mainWindowViewModel.AbstractFigs.RemoveAt(mainWindowViewModel.AbstractFigs.Count - 2);
+                mainWindowViewModel.AbstractFigs.RemoveAt(mainWindowViewModel.AbstractFigs.Count - 1);
+                mainWindowViewModel.AbstractFigs.RemoveAt(mainWindowViewModel.AbstractFigs.Count - 1);
             }
            
         }

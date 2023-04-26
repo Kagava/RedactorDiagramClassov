@@ -17,7 +17,11 @@
    <Grid RowDefinitions="0.1*, *">
 	<Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
 		<StackPanel  Orientation="Horizontal">
-			
+
+			<RadioButton 
+						 GroupName="PaintOption"
+						 MinWidth="60"
+						 Content="EEEC"/>
 			<RadioButton IsChecked="{Binding IsDrag}"
 						 GroupName="PaintOption"
 						 MinWidth="60"
@@ -87,14 +91,13 @@
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
 
+
+
 						   
-						
-						   
-						   <!--<TextBlock Text="{Binding NameC}" Grid.Row="0"/>-->
 						   <Rectangle Grid.RowSpan="2"
 									 Height="{Binding Height}"
 									 Width="{Binding Width}"
-									 Fill="Transparent"
+									 Fill="Aqua"
 									 Stroke="Green"
 									 StrokeThickness="2">
 							  
@@ -155,6 +158,13 @@
 								   </TransformGroup>
 							   </Ellipse.RenderTransform>
 						   </Ellipse>
+						   <controls:InnerClass 
+							   Focusable="True" 
+							   Width="{Binding WidthPanel}" 
+							   Height="{Binding HeightPanel}" 
+							   CustomName="{Binding DisplayName}"
+							   CustomAtribute="{Binding DisplayAtributes}"
+							   CustomOperatuon="{Binding DisplayOperations}"/>
 					   </Canvas>
 					   
 				   </DataTemplate>
@@ -170,13 +180,13 @@
 								   </ScaleTransform>
 							   </TransformGroup>
 						   </Canvas.RenderTransform>
-					   <Grid Background ="Red" RowDefinitions="0.1*, *">
+					   <Grid Background ="Transparent" RowDefinitions="0.1*, *">
+
 						   
-						   <TextBlock Text="{Binding NameI}" Grid.Row="1"/>
 						   <Rectangle Grid.RowSpan="2"
 									 Height="{Binding Height}"
 									 Width="{Binding Width}"
-									 Fill="Transparent"
+									 Fill="Aqua"
 									 Stroke="Green"
 									 StrokeThickness="2">
 
@@ -238,6 +248,13 @@
 								   </TransformGroup>
 							   </Ellipse.RenderTransform>
 						   </Ellipse>
+						   <controls:InnerInterface
+							   Focusable="True"
+							   Width="{Binding WidthPanel}"
+							   Height="{Binding HeightPanel}"
+							   CustomName="{Binding DisplayName}"
+							   CustomAtribute="{Binding DisplayAtributes}"
+							   CustomOperatuon="{Binding DisplayOperations}"/>
 					   </Canvas>
 				   </DataTemplate>
 			   <DataTemplate DataType="{ x:Type	models:MyLine}">
